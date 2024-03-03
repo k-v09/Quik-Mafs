@@ -126,4 +126,19 @@ p {
     background: var(--breen);
     cursor: pointer;
 }
-  
+
+.slider::-ms-thumb {
+    width: 25px;
+    height: 25px;
+    background: var(--breen);
+    cursor: pointer;
+}
+
+#myCanvas {
+    border: 3px solid var(--durp);
+    background-color: var(--purp);
+    color: var(--yell);
+    width: 60%;
+    display: inline-block;
+    margin-right: 20px;
+}
