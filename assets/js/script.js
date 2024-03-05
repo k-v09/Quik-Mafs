@@ -5,24 +5,8 @@ const ctx = canvas.getContext('2d');
 canvas.width = 700;
 canvas.height = 500;
 
-const f = 2;
-const a = 50;
 
-ctx.beginPath();
-for (let x = 0; x < canvas.width; x++) {
-  for (let y = 0; y < canvas.height; y++) {
-    const sineValue = Math.sin((x / f) * 2 * Math.PI);
-    const color = `hsl(${(sineValue * a) % 360}, 50%, 50%)`;
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, 1, 1);
-  }
-}
-
-// ctx.beginPath();
-// ctx.arc(0, 0, 20, 0, 2 * Math.PI);
-// ctx.stroke();
-
-/**
+/** 
 @param {number} frequency - The frequency of the sine wave in "Hz"
 @param {number} amplitude - The amplitude of the sine wave
 @returns {number[]}
@@ -35,5 +19,27 @@ function generateSineWave(frequency, amplitude) {
     }
     return wave;
 }
-console.log(generateSineWave(1, 1));
+const wev = generateSineWave(1, 1);
+console.log(wev);
 
+/**
+ * Draws the wave on the canvas
+ * @param {number[]} vals - The array of wave values
+ * @param {HTMLElement} el - The element to draw the wave on
+ */
+function drawWave(vals, el) {
+    let center = el.height / 2;
+    let maxVal = 0;
+    for (let i = 0; i < vals.length; i++) {
+        if (Math.abs(vals[i]) > maxVal) {
+            maxVal = Math.abs(vals[i]);
+        }
+    }
+    let maxAmplitude = (el.height - center) / maxVal;
+    for (let i = 0; i < vals.length; i++) {
+        let x = i / vals.length * el.width;
+        let y = center + (vals[i] * el.height);
+        ctx.lineTo(x, y);
+    }
+}
+drawWave(wev, canvas);

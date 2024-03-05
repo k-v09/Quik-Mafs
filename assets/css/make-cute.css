@@ -136,7 +136,7 @@ p {
 
 #myCanvas {
     border: 3px solid var(--durp);
-    background-color: var(--purp);
+    /* background-color: var(--purp); */
     color: var(--yell);
     width: 60%;
     display: inline-block;
